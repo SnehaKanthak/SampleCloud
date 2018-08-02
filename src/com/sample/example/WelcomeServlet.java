@@ -8,6 +8,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  * Servlet implementation class WelcomeServlet
@@ -38,6 +39,8 @@ public class WelcomeServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 
 	{
 		String userName = request.getParameter("userName");
+		HttpSession session = request.getSession();
+		session.setAttribute("user", userName);
 		RequestDispatcher rd = request.getRequestDispatcher("Welcome.jsp");
 		rd.include(request, response);
 		// TODO Auto-generated method stub
